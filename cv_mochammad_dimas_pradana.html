@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Profesional | Web Developer & UI Designer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+    
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-surface: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --accent: #4f46e5;
+            --accent-hover: #4338ca;
+            --border-color: #e2e8f0;
+            --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            --font-main: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #090d16;
+            --bg-secondary: #0f172a;
+            --bg-surface: #131c31;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent: #818cf8;
+            --accent-hover: #6366f1;
+            --border-color: #1e293b;
+            --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            transition: background-color 0.5s ease, color 0.5s ease;
+            line-height: 1.6;
+        }
+
+        section {
+            padding: 100px 10% bio;
+            min-height: auto;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 4px;
+            background: var(--accent);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button, .btn {
+            font-family: var(--font-main);
+            cursor: pointer;
+            border: none;
+            outline: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: var(--transition-smooth);
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 25px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: var(--transition-smooth);
+            background: transparent;
+        }
+
+        header.shrink {
+            padding: 15px 10%;
+            background: rgba(var(--bg-primary), 0.8);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        header.shrink[data-theme="dark"] {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span { color: var(--accent); }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition-smooth);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .theme-toggle {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            background: none;
+        }
+
+        #hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--bg-primary) 60%, var(--bg-secondary));
+            padding-top: 120px;
+        }
+
+        .hero-text {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        .typing-container {
+            display: inline-block;
+            overflow: hidden;
+            border-right: 3px solid var(--accent);
+            white-space: nowrap;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--accent);
+            animation: typing 3.5s steps(30, end) infinite alternate, blink 0.75s step-end infinite;
+        }
+
+        .hero-text p {
+            color: var(--text-secondary);
+            margin: 25px 0 40px 0;
+            font-size: 1.1rem;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            padding: 14px 28px;
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            padding: 14px 28px;
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-secondary);
+            transform: translateY(-3px);
+        }
+
+        .hero-img {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            position: relative;
+        }
+
+        .img-box {
+            width: 380px;
+            height: 380px;
+            background: var(--accent);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition-smooth);
+            animation: morphing 8s infinite ease-in-out;
+        }
+
+        .img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        @keyframes morphing {
+            0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+            50% { border-radius: 70% 30% 30% 70% / 70% 60% 40% 30%; }
+            100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+        }
+
+        #about { background: var(--bg-secondary); }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .stat-card {
+            background: var(--bg-surface);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--card-shadow);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px 50px;
+        }
+
+        .skill-item {
+            position: relative;
+        }
+
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .skill-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: var(--accent);
+            width: 0%; 
+            border-radius: 10px;
+            transition: width 1.5s cubic-bezier(0.1, 1, 0.1, 1);
+        }
+
+        #timeline { background: var(--bg-secondary); }
+
+        .timeline-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background: var(--border-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background: inherit;
+            width: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            right: -8px;
+            background-color: var(--bg-surface);
+            border: 4px solid var(--accent);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .left { left: 0; box-sizing: border-box;}
+        .right { left: 50%; box-sizing: border-box;}
+
+        .right::after { left: -8px; }
+
+        .timeline-card {
+            padding: 25px;
+            background: var(--bg-surface);
+            position: relative;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--card-shadow);
+        }
+
+        .timeline-date {
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .timeline-card h3 { font-size: 1.2rem; margin-bottom: 5px; }
+        .timeline-card h4 { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 10px;}
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .portfolio-card {
+            background: var(--bg-surface);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--card-shadow);
+            transition: var(--transition-smooth);
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .port-img-container {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            background: #eaeaea;
+        }
+
+        .port-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-smooth);
+        }
+
+        .portfolio-card:hover .port-img-container img {
+            transform: scale(1.1);
+        }
+
+        .port-info {
+            padding: 25px;
+        }
+
+        .port-info h3 {
+            margin-bottom: 10px;
+            font-size: 1.25rem;
+        }
+
+        .port-info p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .port-link {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--accent);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        #contact { background: var(--bg-secondary); }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 50px;
+        }
+
+        .contact-info h2 { font-size: 2rem; margin-bottom: 15px; }
+        .contact-info p { color: var(--text-secondary); margin-bottom: 30px; }
+
+        .info-details { display: flex; flex-direction: column; gap: 20px; }
+        .info-item { display: flex; align-items: center; gap: 15px; }
+        
+        .info-item i {
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .contact-form {
+            background: var(--bg-surface);
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--card-shadow);
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            outline: none;
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+        }
+
+        .form-group textarea { height: 120px; resize: none; }
+
+        .form-group label {
+            position: absolute;
+            left: 14px;
+            top: 14px;
+            color: var(--text-secondary);
+            pointer-events: none;
+            transition: var(--transition-smooth);
+            font-size: 0.95rem;
+        }
+
+        .form-group input:focus ~ label,
+        .form-group input:not(:placeholder-shown) ~ label,
+        .form-group textarea:focus ~ label,
+        .form-group textarea:not(:placeholder-shown) ~ label {
+            top: -10px;
+            left: 10px;
+            font-size: 0.8rem;
+            background: var(--bg-surface);
+            padding: 0 5px;
+            color: var(--accent);
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--accent);
+        }
+
+        .form-group.error input, .form-group.error textarea { border-color: #ef4444; }
+        .error-msg { color: #ef4444; font-size: 0.8rem; margin-top: 5px; display: none; }
+
+        footer {
+            padding: 40px 10%;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .social-icons { display: flex; gap: 15px; }
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-smooth);
+        }
+
+        .social-icons a:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .copyright { font-size: 0.9rem; color: var(--text-secondary); }
+
+        @media (max-width: 1024px) {
+            section { padding: 80px 5%; }
+            #hero { flex-direction: column; text-align: center; justify-content: center; gap: 50px; }
+            .hero-img { justify-content: center; }
+            .about-content, .contact-wrapper { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .menu-btn { display: block; z-index: 1001; }
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: var(--bg-surface);
+                flex-direction: column;
+                justify-content: center;
+                gap: 40px;
+                box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+                transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+            .nav-links.active { right: 0; }
+            .timeline-container::after { left: 31px; }
+            .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; }
+            .timeline-item::after { left: 22px; }
+            .right { left: 0; }
+            .skills-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1 { font-size: 2.5rem; }
+            .img-box { width: 280px; height: 280px; }
+            .section-title { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body data-theme="light">
+
+    <header id="navbar">
+        <a href="#hero" class="logo">CV<span>Online.</span></a>
+        <nav>
+            <ul class="nav-links" id="nav-menu">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">Tentang</a></li>
+                <li><a href="#skills">Keahlian</a></li>
+                <li><a href="#timeline">Pengalaman</a></li>
+                <li><a href="#portfolio">Portofolio</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+        </nav>
+        <div class="nav-actions">
+            <button class="theme-toggle" id="theme-btn" aria-label="Toggle Theme">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+            <button class="menu-btn" id="burger-btn" aria-label="Open Menu">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="hero-text">
+                <h1>Halo, Saya Mochammad Dimas Pradana</h1>
+                <div class="typing-container">Web Developer & UI Designer</div>
+                <p>Membantu bisnis membangun platform digital modern dengan performa tinggi, struktur kode bersih, dan visual interface yang memukau pengguna.</p>
+                <div class="cta-group">
+                    <a href="#contact" class="btn btn-primary">Hubungi Saya</a>
+                    <a href="#portfolio" class="btn btn-secondary">Lihat Karya</a>
+                </div>
+            </div>
+            <div class="hero-img">
+                <div class="img-box">
+                    <img data-src="foto_profil.jpeg" alt="Mochammad Dimas Pradana" id="hero-avatar">
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="reveal">
+            <div class="container">
+                <h2 class="section-title">Tentang Saya</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>Saya adalah seorang Professional Web Developer yang berfokus pada integrasi arsitektur frontend modern dan user-experience design yang intuitif.</p>
+                        <p>Berbekal kecintaan mendalam pada detail mikro-interaksi dan kebersihan penulisan kode, saya menjembatani visi estetik desainer dan fungsionalitas logika engineering secara presisi.</p>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <span class="stat-number" data-target="24">0</span>
+                            <span class="stat-label">Proyek Selesai</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number" data-target="12">0</span>
+                            <span class="stat-label">Sertifikasi Global</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="reveal">
+            <div class="container">
+                <h2 class="section-title">Keahlian</h2>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <div class="skill-info"><span>HTML5 / CSS3 (Grid/Flexbox)</span><span>95%</span></div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="95%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>JavaScript (ES6+) & Web Animations</span><span>90%</span></div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="90%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>UI/UX & Framer/Webflow Prototyping</span><span>85%</span></div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="85%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>Responsive Web Design / Optimization</span><span>95%</span></div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="95%"></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="timeline" class="reveal">
+            <div class="container">
+                <h2 class="section-title">Riwayat & Pengalaman</h2>
+                <div class="timeline-container">
+                    <div class="timeline-item left">
+                        <div class="timeline-card">
+                            <div class="timeline-date">2024 - Sekarang</div>
+                            <h3>Senior Frontend Developer</h3>
+                            <h4>TechCorp Global Studio</h4>
+                            <p>Memimpin tim pengembangan antarmuka utama aplikasi SaaS berskala enterprise dan meningkatkan performa loading aset web hingga 40%.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right">
+                        <div class="timeline-card">
+                            <div class="timeline-date">2023 - 2024</div>
+                            <h3>UI/UX & Web Developer</h3>
+                            <h4>Pixel Craft Agency</h4>
+                            <p>Merancang framework visual interaktif serta mentranslasikan desain Figma mentah menjadi kode HTML/CSS komersial yang responsif.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left">
+                        <div class="timeline-card">
+                            <div class="timeline-date">2023 - sekarang</div>
+                            <h3>Mahasiswa Sistem nformasi</h3>
+                            <h4>Universitas Internasional Semen Indonesia</h4>
+                            <p>Lulus predikat Kumlaude dengan fokus riset pengembangan optimalisasi rendering grafik pada browser berbasis web modern.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="reveal">
+            <div class="container">
+                <h2 class="section-title">Portofolio Pilihan</h2>
+                <div class="portfolio-grid">
+                    <article class="portfolio-card">
+                        <div class="port-img-container">
+                            <img data-src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=500&q=80" alt="SaaS Dashboard Project">
+                        </div>
+                        <div class="port-info">
+                            <h3>Quantum Dashboard</h3>
+                            <p>Analisis visualisasi data finansial real-time menggunakan kustomisasi penuh arsitektur CSS Grid.</p>
+                            <a href="#" class="port-link">Lihat Studi Kasus <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+                    <article class="portfolio-card">
+                        <div class="port-img-container">
+                            <img data-src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=500&q=80" alt="E-Commerce Interface">
+                        </div>
+                        <div class="port-info">
+                            <h3>Veloce Commerce</h3>
+                            <p>Platform e-commerce butik premium dengan micro-interaction transisi halaman yang super halus.</p>
+                            <a href="#" class="port-link">Lihat Studi Kasus <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+                    <article class="portfolio-card">
+                        <div class="port-img-container">
+                            <img data-src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&w=500&q=80" alt="Agency Website Design">
+                        </div>
+                        <div class="port-info">
+                            <h3>Aura Creative Studio</h3>
+                            <p>Landing page agensi berbasis interaksi scroll parallax berkinerja tinggi tanpa library pihak ketiga.</p>
+                            <a href="#" class="port-link">Lihat Studi Kasus <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="reveal">
+            <div class="container">
+                <div class="contact-wrapper">
+                    <div class="contact-info">
+                        <h2>Mari Kolaborasi Bangun Ide Hebat Anda!</h2>
+                        <p>Pintu inbox saya selalu terbuka untuk tawaran kerja sama proyek inovatif, posisi full-time, ataupun sekadar menyapa jaringan profesional.</p>
+                        <div class="info-details">
+                            <div class="info-item">
+                                <i class="fa-solid fa-envelope"></i>
+                                <span>mochammad.pradana23@student.uisi.ac.id</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fa-solid fa-location-dot"></i>
+                                <span>Lamongan,Jawa Timur, Indonesia</span>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="contact-form" id="inputForm" novalidate>
+                        <div class="form-group" id="name-group">
+                            <input type="text" id="name" placeholder=" " required>
+                            <label for="name">Nama Lengkap</label>
+                            <div class="error-msg">Nama wajib diisi minimal 3 karakter.</div>
+                        </div>
+                        <div class="form-group" id="email-group">
+                            <input type="email" id="email" placeholder=" " required>
+                            <label for="email">Alamat Email</label>
+                            <div class="error-msg">Masukkan alamat email yang valid.</div>
+                        </div>
+                        <div class="form-group" id="msg-group">
+                            <textarea id="message" placeholder=" " required></textarea>
+                            <label for="message">Pesan Anda</label>
+                            <div class="error-msg">Pesan tidak boleh kosong.</div>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Kirim Pesan</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="social-icons">
+            <a href="#" aria-label="LinkedIn Profile"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="#" aria-label="GitHub Profile"><i class="fa-brands fa-github"></i></a>
+            <a href="#" aria-label="Dribbble Portfolio"><i class="fa-brands fa-dribbble"></i></a>
+        </div>
+        <div class="copyright">&copy; 2026 Dimas. Seluruh hak cipta dilindungi.</div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            const body = document.body;
+            const themeBtn = document.getElementById("theme-btn");
+            const themeIcon = themeBtn.querySelector("i");
+            const savedTheme = localStorage.getItem("theme") || "light";
+
+            function setTheme(theme) {
+                body.setAttribute("data-theme", theme);
+                localStorage.setItem("theme", theme);
+                if (theme === "dark") {
+                    themeIcon.className = "fa-solid fa-sun";
+                } else {
+                    themeIcon.className = "fa-solid fa-moon";
+                }
+            }
+            
+            setTheme(savedTheme);
+            themeBtn.addEventListener("click", () => {
+                const currentTheme = body.getAttribute("data-theme");
+                setTheme(currentTheme === "dark" ? "light" : "dark");
+            });
+
+            const navbar = document.getElementById("navbar");
+            window.addEventListener("scroll", () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add("shrink");
+                } else {
+                    navbar.classList.remove("shrink");
+                }
+            });
+
+            const burgerBtn = document.getElementById("burger-btn");
+            const navMenu = document.getElementById("nav-menu");
+            
+            burgerBtn.addEventListener("click", () => {
+                navMenu.classList.toggle("active");
+                burgerBtn.querySelector("i").classList.toggle("fa-xmark");
+            });
+
+            document.querySelectorAll(".nav-links a").forEach(link => {
+                link.addEventListener("click", () => {
+                    navMenu.classList.remove("active");
+                    burgerBtn.querySelector("i").classList.remove("fa-xmark");
+                });
+            });
+
+            const revealElements = document.querySelectorAll(".reveal");
+            
+            const observerOptions = {
+                root: null,
+                threshold: 0.15,
+                rootMargin: "0px"
+            };
+
+            const globalObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+
+                        const progressBars = entry.target.querySelectorAll(".skill-progress");
+                        progressBars.forEach(bar => {
+                            bar.style.width = bar.getAttribute("data-width");
+                        });
+
+                        const statNumbers = entry.target.querySelectorAll(".stat-number");
+                        statNumbers.forEach(num => {
+                            const target = +num.getAttribute("data-target");
+                            let count = 0;
+                            const speed = target / 50; 
+
+                            const updateCounter = () => {
+                                count += speed;
+                                if (count < target) {
+                                    num.innerText = Math.ceil(count) + "+";
+                                    setTimeout(updateCounter, 25);
+                                } else {
+                                    num.innerText = target + "+";
+                                }
+                            };
+                            updateCounter();
+                        });
+
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            revealElements.forEach(element => globalObserver.observe(element));
+
+            const lazyImages = document.querySelectorAll('img[data-src]');
+            
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.getAttribute('data-src');
+                        img.onload = () => {
+                            img.style.opacity = '1'; 
+                        };
+                        observer.unobserve(img);
+                    }
+                });
+            });
+
+            lazyImages.forEach(img => imageObserver.observe(img));
+
+            const form = document.getElementById("inputForm");
+            
+            form.addEventListener("submit", (e) => {
+                e.preventDefault();
+                let isValid = true;
+
+                const name = document.getElementById("name");
+                const nameGroup = document.getElementById("name-group");
+                if (name.value.trim().length < 3) {
+                    nameGroup.classList.add("error");
+                    nameGroup.querySelector(".error-msg").style.display = "block";
+                    isValid = false;
+                } else {
+                    nameGroup.classList.remove("error");
+                    nameGroup.querySelector(".error-msg").style.display = "none";
+                }
+
+                const email = document.getElementById("email");
+                const emailGroup = document.getElementById("email-group");
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailPattern.test(email.value.trim())) {
+                    emailGroup.classList.add("error");
+                    emailGroup.querySelector(".error-msg").style.display = "block";
+                    isValid = false;
+                } else {
+                    emailGroup.classList.remove("error");
+                    emailGroup.querySelector(".error-msg").style.display = "none";
+                }
+
+                const message = document.getElementById("message");
+                const msgGroup = document.getElementById("msg-group");
+                if (message.value.trim() === "") {
+                    msgGroup.classList.add("error");
+                    msgGroup.querySelector(".error-msg").style.display = "block";
+                    isValid = false;
+                } else {
+                    msgGroup.classList.remove("error");
+                    msgGroup.querySelector(".error-msg").style.display = "none";
+                }
+
+                if (isValid) {
+                    alert("Terima kasih! Pesan profesional Anda berhasil disimulasikan terkirim.");
+                    form.reset();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
